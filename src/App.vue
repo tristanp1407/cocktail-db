@@ -41,7 +41,7 @@
 
           </ul>
 
-          <p>{{drink.method}}</p>
+          <p>{{drink.instructions}}</p>
 
         </div> 
       </div>
