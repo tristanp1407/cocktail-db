@@ -1,7 +1,5 @@
 <template>
   <div>
-    <button @click="searchForDrink()">CLICK</button>
-    <button @click="logData()">CLICK</button>
     <div class="search-cont">
       <div class="search-bar">
         <input
@@ -21,127 +19,33 @@
       </div>
     </div>
 
-    <!-- <div class="results">
-      <div v-for="drink in allData" class="tile">
+    <div class="results">
+      <div v-for="drink in formattedData" class="tile">
+
         <div class="hero">
-          <img style="height: 100%" :src="drink.strDrinkThumb" />
+          <img style="height: 100%" :src="drink.imgUrl" />
         </div>
 
         <div class="details">
-          <h1>{{drink.strDrink}}</h1>
+
+          <h1>{{drink.name}}</h1>
 
           <ul class="ingredients">
-            <li v-if="drink.strIngredient1 !== null"> 
-              {{drink.strIngredient1}}
+
+            <li v-for="ingredient in drink.ingredients"> 
+              {{ingredient.ingredient}}
               <span
-                v-if="drink.strMeasure1 !== null"
                 class="measure"
-              >({{drink.strMeasure1}})</span>
+              >({{ingredient.measure}})</span>
             </li>
-            <li v-if="drink.strIngredient2 !== null">
-              {{drink.strIngredient2}}
-              <span
-                v-if="drink.strMeasure2 !== null"
-                class="measure"
-              >({{drink.strMeasure2}})</span>
-            </li>
-            <li v-if="drink.strIngredient3 !== null">
-              {{drink.strIngredient3}}
-              <span
-                v-if="drink.strMeasure3 !== null"
-                class="measure"
-              >({{drink.strMeasure3}})</span>
-            </li>
-            <li v-if="drink.strIngredient4 !== null">
-              {{drink.strIngredient4}}
-              <span
-                v-if="drink.strMeasure4 !== null"
-                class="measure"
-              >({{drink.strMeasure4}})</span>
-            </li>
-            <li v-if="drink.strIngredient5 !== null">
-              {{drink.strIngredient5}}
-              <span
-                v-if="drink.strMeasure5 !== null"
-                class="measure"
-              >({{drink.strMeasure5}})</span>
-            </li>
-            <li v-if="drink.strIngredient6 !== null">
-              {{drink.strIngredient6}}
-              <span
-                v-if="drink.strMeasure6 !== null"
-                class="measure"
-              >({{drink.strMeasure6}})</span>
-            </li>
-            <li v-if="drink.strIngredient7 !== null">
-              {{drink.strIngredient7}}
-              <span
-                v-if="drink.strMeasure7 !== null"
-                class="measure"
-              >({{drink.strMeasure7}})</span>
-            </li>
-            <li v-if="drink.strIngredient8 !== null">
-              {{drink.strIngredient8}}
-              <span
-                v-if="drink.strMeasure8 !== null"
-                class="measure"
-              >({{drink.strMeasure8}})</span>
-            </li>
-            <li v-if="drink.strIngredient9 !== null">
-              {{drink.strIngredient9}}
-              <span
-                v-if="drink.strMeasure9 !== null"
-                class="measure"
-              >({{drink.strMeasure9}})</span>
-            </li>
-            <li v-if="drink.strIngredient10 !== null">
-              {{drink.strIngredient10}}
-              <span
-                v-if="drink.strMeasure10 !== null"
-                class="measure"
-              >({{drink.strMeasure10}})</span>
-            </li>
-            <li v-if="drink.strIngredient11 !== null">
-              {{drink.strIngredient11}}
-              <span
-                v-if="drink.strMeasure11 !== null"
-                class="measure"
-              >({{drink.strMeasure11}})</span>
-            </li>
-            <li v-if="drink.strIngredient12 !== null">
-              {{drink.strIngredient12}}
-              <span
-                v-if="drink.strMeasure12 !== null"
-                class="measure"
-              >({{drink.strMeasure12}})</span>
-            </li>
-            <li v-if="drink.strIngredient13 !== null">
-              {{drink.strIngredient13}}
-              <span
-                v-if="drink.strMeasure13 !== null"
-                class="measure"
-              >({{drink.strMeasure13}})</span>
-            </li>
-            <li v-if="drink.strIngredient14 !== null">
-              {{drink.strIngredient14}}
-              <span
-                v-if="drink.strMeasure14 !== null"
-                class="measure"
-              >({{drink.strMeasure14}})</span>
-            </li>
-            <li v-if="drink.strIngredient15 !== null">
-              {{drink.strIngredient15}}
-              <span
-                v-if="drink.strMeasure15 !== null"
-                class="measure"
-              >({{drink.strMeasure15}})</span>
-            </li>
+
           </ul>
 
-          <p>{{drink.strInstructions}}</p>
+          <p>{{drink.method}}</p>
+
         </div> 
       </div>
-    </div>-->
+    </div>
   </div>
 </template>
 
@@ -154,23 +58,17 @@
     data() {
       return{
         formattedData: null,
-        searchInput: "moj"
+        searchInput: ""
       }
       
     },
 
     methods: {
-           logData: function(){
-         console.log(this.formattedData)  
-        },
-        
-        searchForDrink: function (){
+
+      searchForDrink: function (){
         drinkHelper.getDrink(this.searchInput);
         this.formattedData = drinkHelper.formattedData;
-        // console.log(this.formattedData)
       },
-
- 
     }
   }
 </script>

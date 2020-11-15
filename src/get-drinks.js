@@ -18,7 +18,6 @@ function formatData (allData){
             name: allData[j].strDrink,
             imgUrl: allData[j].strDrinkThumb,
             ingredients:[],
-            measurements:[],
             instructions: allData[j].strInstructions
         }
 
@@ -29,17 +28,19 @@ function formatData (allData){
             measureKey = measureString + i;
 
             //get value from data using keys
-            if (allData[j][ingredientKey] != null){
-                formattedDrink.ingredients.push(allData[j][ingredientKey])
-            }
-
-            if (allData[j][measureKey] != null){
-                formattedDrink.measurements.push(allData[j][measureKey])
+            if (allData[j][ingredientKey] != null && allData[j][measureKey] != "" && allData[j][measureKey] != null){
+                formattedDrink.ingredients.push(
+                    {
+                    ingredient: allData[j][ingredientKey],
+                    measure: allData[j][measureKey] 
+                    }
+                )
             }
         }
 
         formattedData.push(formattedDrink)        
     }  
+    console.log(formattedData)
     return formattedData 
 }
 
