@@ -1,13 +1,15 @@
 <template>
   <div>
+    <button @click="searchForDrink()">CLICK</button>
+    <button @click="logData()">CLICK</button>
     <div class="search-cont">
       <div class="search-bar">
         <input
           class="searchBar"
           placeholder="Type drink or ingredient..."
           type="text"
-          v-model="message"
-          @keyup="getDrink()"
+          v-model="searchInput"
+          @keyup="searchForDrink()"
         />
         <p class="cocktaildb">
           using
@@ -19,7 +21,7 @@
       </div>
     </div>
 
-    <div class="results">
+    <!-- <div class="results">
       <div v-for="drink in allData" class="tile">
         <div class="hero">
           <img style="height: 100%" :src="drink.strDrinkThumb" />
@@ -29,7 +31,7 @@
           <h1>{{drink.strDrink}}</h1>
 
           <ul class="ingredients">
-            <li v-if="drink.strIngredient1 !== null">
+            <li v-if="drink.strIngredient1 !== null"> 
               {{drink.strIngredient1}}
               <span
                 v-if="drink.strMeasure1 !== null"
@@ -137,40 +139,40 @@
           </ul>
 
           <p>{{drink.strInstructions}}</p>
-        </div>
+        </div> 
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
-import axios from "axios";
+  import axios from "axios";
+  const drinkHelper = require("./get-drinks");
 
-export default {
-  name: "app",
-  data() {
-    return {
-      allData: "",
-      url: "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=",
-      search: "",
-      message: "",
-      imgUrl: "",
-      ingredients: [],
-    };
-  },
-
-  methods: {
-    getDrink() {
-      axios
-        .get(this.url + this.message)
-        .then((response) => (this.allData = response.data.drinks));
+  export default {
+    name: "app",
+    data() {
+      return{
+        formattedData: null,
+        searchInput: "moj"
+      }
+      
     },
-  },
 
-  mounted() {
-    this.getDrink();
-  },
-};
+    methods: {
+           logData: function(){
+         console.log(this.formattedData)  
+        },
+        
+        searchForDrink: function (){
+        drinkHelper.getDrink(this.searchInput);
+        this.formattedData = drinkHelper.formattedData;
+        // console.log(this.formattedData)
+      },
+
+ 
+    }
+  }
 </script>
 
 <style>
