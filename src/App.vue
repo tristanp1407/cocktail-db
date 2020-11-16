@@ -35,7 +35,7 @@
             <li v-for="ingredient in drink.ingredients"> 
               {{ingredient.ingredient}}
               <span
-                class="measure"
+                class="measure" v-if="ingredient.measure != '' && ingredient.measure != null"
               >({{ingredient.measure}})</span>
             </li>
 
@@ -112,11 +112,11 @@
   width: 60vw;
   max-width: 400px;
   border-radius: 50px;
-  border: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border: 1px solid rgb(194, 194, 194);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
+    0px 1px 2px rgba(0, 0, 0, 0.24);
   padding: 5px 20px;
   outline: none;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);

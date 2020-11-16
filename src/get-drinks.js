@@ -28,7 +28,7 @@ function formatData (allData){
             measureKey = measureString + i;
 
             //get value from data using keys
-            if (allData[j][ingredientKey] != null && allData[j][measureKey] != "" && allData[j][measureKey] != null){
+            if (allData[j][ingredientKey] != null){
                 formattedDrink.ingredients.push(
                     {
                     ingredient: allData[j][ingredientKey],
