@@ -13,64 +13,61 @@
           using
           <a
             href="https://www.thecocktaildb.com/api.php"
-            :style="{textDecortion: 'none'}"
-          >TheCocktailDB</a> APIs - to be consumed with moderation...
+            :style="{ textDecortion: 'none' }"
+            >TheCocktailDB</a
+          >
+          APIs - to be consumed with moderation...
         </p>
       </div>
     </div>
 
     <div class="results">
       <div v-for="drink in formattedData" class="tile">
-
         <div class="hero">
           <img style="height: 100%" :src="drink.imgUrl" />
         </div>
 
         <div class="details">
-
-          <h1>{{drink.name}}</h1>
+          <h1>{{ drink.name }}</h1>
 
           <ul class="ingredients">
-
-            <li v-for="ingredient in drink.ingredients"> 
-              {{ingredient.ingredient}}
+            <li v-for="ingredient in drink.ingredients">
+              {{ ingredient.ingredient }}
               <span
-                class="measure" v-if="ingredient.measure != '' && ingredient.measure != null"
-              >({{ingredient.measure}})</span>
+                class="measure"
+                v-if="ingredient.measure != '' && ingredient.measure != null"
+                >({{ ingredient.measure }})</span
+              >
             </li>
-
           </ul>
 
-          <p>{{drink.instructions}}</p>
-
-        </div> 
+          <p>{{ drink.instructions }}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import axios from "axios";
-  const drinkHelper = require("./get-drinks");
+import axios from "axios";
+const drinkHelper = require("./get-drinks");
 
-  export default {
-    name: "app",
-    data() {
-      return{
-        formattedData: null,
-        searchInput: ""
-      }
-      
-    },
+export default {
+  name: "app",
+  data() {
+    return {
+      formattedData: null,
+      searchInput: ""
+    };
+  },
 
-    methods: {
-
-      searchForDrink: function (){
-        drinkHelper.getDrink(this.searchInput);
-        this.formattedData = drinkHelper.formattedData;
-      },
+  methods: {
+    searchForDrink: function() {
+      drinkHelper.getDrink(this.searchInput);
+      this.formattedData = drinkHelper.formattedData;
     }
   }
+};
 </script>
 
 <style>
@@ -96,28 +93,29 @@
 
 .cocktaildb {
   font-size: 13px;
-  color: lightgrey;
+  color: #ddd4d4;
   margin-top: 10px;
 }
 
 .cocktaildb a:visited,
 .cocktaildb a:active {
   text-decoration: none;
-  color: rgb(172, 172, 172);
+  color: #ddd4d4;
 }
 
 .searchBar {
-  font-size: 100%;
-  height: 40px;
+  font-size: 3vw;
+  height: 100px;
   width: 60vw;
-  max-width: 400px;
-  border-radius: 50px;
-  border: 1px solid rgb(194, 194, 194);
+  border-radius: 300px;
+  /* border: 1px solid rgb(194, 194, 194); */
+  border: none;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 1px 2px rgba(0, 0, 0, 0.24);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
     0px 1px 2px rgba(0, 0, 0, 0.24);
-  padding: 5px 20px;
+  padding: 5px 40px;
   outline: none;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }

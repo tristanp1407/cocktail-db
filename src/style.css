@@ -31,8 +31,8 @@
 }
 
 .searchBar {
-  font-size: 100%;
-  height: 40px;
+  font-size: 50px;
+  height: 100px;
   width: 60vw;
   max-width: 400px;
   border-radius: 50px;
